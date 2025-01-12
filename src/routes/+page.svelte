@@ -23,7 +23,7 @@
       title: 'Requirements Gathering',
       notes: [
         '🎯 <span class="note-action">Collaborated</span> with <span class="note-subject">stakeholders</span> to clarify <span class="note-object">requirements</span> and <span class="note-result">business goals</span>',
-        '📋 <span class="note-action">Defined</span> <span class="note-object">product features</span> for <span class="note-result">successful delivery</span>',
+        '🔍 <span class="note-action">Detected</span> <span class="note-object">technical concerns</span> and <span class="note-object">business logic</span> that <span class="note-result">affect old features</span>',
         '📊 <span class="note-action">Provided</span> <span class="note-object">detailed estimation</span> for <span class="note-result">project planning</span>'
       ],
       phase: 'requirements',
@@ -34,7 +34,7 @@
       title: 'Architecture Planning',
       notes: [
         '🏗️ <span class="note-action">Designed</span> <span class="note-object">system architecture</span> for <span class="note-result">modular flow</span>',
-        '🔧 <span class="note-action">Selected</span> optimal <span class="note-object">technology stack</span>',
+        '🔄 <span class="note-action">Evaluated</span> <span class="note-object">impact on existing systems</span> for <span class="note-result">seamless integration</span>',
         '📐 <span class="note-action">Applied</span> <span class="note-object">design patterns</span> for <span class="note-result">scalability</span>'
       ],
       phase: 'requirements',
