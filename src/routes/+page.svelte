@@ -191,7 +191,7 @@
 <div class="min-h-screen bg-gray-50 p-8">
   <h1 class="text-4xl font-bold text-center mb-12 text-border">Development Workflow</h1>
   
-  <div class="max-w-7xl mx-auto grid gap-8 relative" bind:this={container}>
+  <div class="max-w-7xl mx-auto grid gap-16 relative" bind:this={container}>
     {#if mounted}
       <div class="absolute inset-0 pointer-events-none z-20">
         <svg class="w-full h-full" style="min-height: 100%">
@@ -199,30 +199,30 @@
           <defs>
             <marker
               id="arrowhead"
-              markerWidth="10"
-              markerHeight="7"
-              refX="9"
-              refY="3.5"
+              markerWidth="12"
+              markerHeight="8"
+              refX="10"
+              refY="4"
               orient="auto">
-              <polygon points="0 0, 10 3.5, 0 7" fill="#5D6CC0"/>
+              <polygon points="0 0, 12 4, 0 8" fill="#5D6CC0"/>
             </marker>
             <marker
               id="arrowhead-success"
-              markerWidth="10"
-              markerHeight="7"
-              refX="9"
-              refY="3.5"
+              markerWidth="12"
+              markerHeight="8"
+              refX="10"
+              refY="4"
               orient="auto">
-              <polygon points="0 0, 10 3.5, 0 7" fill="#2ECC71"/>
+              <polygon points="0 0, 12 4, 0 8" fill="#2ECC71"/>
             </marker>
             <marker
               id="arrowhead-error"
-              markerWidth="10"
-              markerHeight="7"
-              refX="9"
-              refY="3.5"
+              markerWidth="12"
+              markerHeight="8"
+              refX="10"
+              refY="4"
               orient="auto">
-              <polygon points="0 0, 10 3.5, 0 7" fill="#E74C3C"/>
+              <polygon points="0 0, 12 4, 0 8" fill="#E74C3C"/>
             </marker>
           </defs>
           
@@ -238,8 +238,8 @@
 
     <!-- Requirements Phase -->
     <section class="flow-section bg-requirements">
-      <h2 class="text-2xl font-bold mb-6 text-border">Requirements Phase</h2>
-      <div class="grid gap-6">
+      <h2 class="text-2xl font-bold mb-8 text-border">Requirements Phase</h2>
+      <div class="grid gap-12">
         {#each flowNodes.filter(node => node.phase === 'requirements') as node}
           <div class="flow-node" bind:this={nodes[node.id]}>
             <Card>
@@ -257,8 +257,8 @@
 
     <!-- Development Phase -->
     <section class="flow-section bg-development">
-      <h2 class="text-2xl font-bold mb-6 text-border">Development Phase</h2>
-      <div class="grid gap-6">
+      <h2 class="text-2xl font-bold mb-8 text-border">Development Phase</h2>
+      <div class="grid gap-12">
         {#each flowNodes.filter(node => node.phase === 'development') as node}
           <div class="flow-node" bind:this={nodes[node.id]}>
             <Card>
@@ -276,8 +276,8 @@
 
     <!-- Testing Phase -->
     <section class="flow-section bg-testing">
-      <h2 class="text-2xl font-bold mb-6 text-border">Testing Phase</h2>
-      <div class="grid grid-cols-3 gap-6">
+      <h2 class="text-2xl font-bold mb-8 text-border">Testing Phase</h2>
+      <div class="grid grid-cols-3 gap-12">
         {#each flowNodes.filter(node => node.phase === 'testing') as node}
           <div class="flow-node" bind:this={nodes[node.id]}>
             <Card>
@@ -295,8 +295,8 @@
 
     <!-- CI/CD Pipeline -->
     <section class="flow-section bg-cicd">
-      <h2 class="text-2xl font-bold mb-6 text-border">CI/CD Pipeline</h2>
-      <div class="grid gap-6">
+      <h2 class="text-2xl font-bold mb-8 text-border">CI/CD Pipeline</h2>
+      <div class="grid gap-12">
         {#each flowNodes.filter(node => node.phase === 'cicd') as node}
           <div class="flow-node" bind:this={nodes[node.id]}>
             <Card>
