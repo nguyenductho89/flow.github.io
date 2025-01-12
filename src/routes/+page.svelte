@@ -44,7 +44,6 @@
       id: 'dev-implementation',
       title: 'Code Implementation',
       notes: [
-        '📱 <span class="note-action">Built</span> <span class="note-object">iOS apps</span> using <span class="note-subject">Swift/SwiftUI</span>',
         '📦 <span class="note-action">Created</span> <span class="note-object">reusable libraries</span> for <span class="note-result">efficiency</span>',
         '🔄 <span class="note-action">Integrated</span> <span class="note-object">APIs</span> with <span class="note-result">optimized performance</span>'
       ],
@@ -78,7 +77,7 @@
       title: 'Unit Testing',
       notes: [
         '🎯 <span class="note-action">Implemented</span> <span class="note-object">XCTest coverage</span>',
-        '🔄 <span class="note-action">Created</span> <span class="note-object">API mocks</span> for <span class="note-result">edge cases</span>'
+        '🔄 <span class="note-action">Created</span> <span class="note-object">stub data server</span> for <span class="note-result">test scenarios</span>'
       ],
       phase: 'testing',
       next: ['test-ui', 'test-manual']
