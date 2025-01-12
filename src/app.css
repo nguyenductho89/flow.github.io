@@ -4,71 +4,125 @@
 
 @layer components {
   .flow-container {
-    @apply relative transition-transform duration-300 origin-center p-8;
+    @apply relative p-8 min-h-screen;
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+
+  .phase-container {
+    @apply relative rounded-xl p-8 mb-12;
+  }
+
+  .phase-container[data-phase="requirements"] {
+    @apply bg-indigo-50/30;
+  }
+
+  .phase-container[data-phase="development"] {
+    @apply bg-emerald-50/30;
+  }
+
+  .phase-container[data-phase="testing"] {
+    @apply bg-amber-50/30;
+  }
+
+  .phase-container[data-phase="cicd"] {
+    @apply bg-violet-50/30;
+  }
+
+  .phase-title {
+    @apply text-2xl font-bold mb-8 text-center;
+  }
+
+  .phase-title[data-phase="requirements"] {
+    @apply text-indigo-700/70;
+  }
+
+  .phase-title[data-phase="development"] {
+    @apply text-emerald-700/70;
+  }
+
+  .phase-title[data-phase="testing"] {
+    @apply text-amber-700/70;
+  }
+
+  .phase-title[data-phase="cicd"] {
+    @apply text-violet-700/70;
   }
 
   .flow-node {
-    @apply p-3 rounded-lg shadow-sm border border-indigo-200/30 transition-all duration-300 hover:shadow-md relative z-10 backdrop-blur-sm hover:scale-105;
+    @apply relative z-10 rounded-lg border-2 border-indigo-300/50 p-4;
   }
-  
+
+  .flow-node[data-phase="requirements"] {
+    @apply border-indigo-300/50;
+  }
+
+  .flow-node[data-phase="development"] {
+    @apply border-emerald-300/50;
+  }
+
+  .flow-node[data-phase="testing"] {
+    @apply border-amber-300/50;
+  }
+
+  .flow-node[data-phase="cicd"] {
+    @apply border-violet-300/50;
+  }
+
+  .flow-node[data-type="decision"] {
+    @apply border-[3px];
+  }
+
   .flow-connector {
-    @apply stroke-indigo-400/70;
-    stroke-width: 2;
+    @apply stroke-indigo-500/80;
     fill: none;
-    stroke-dasharray: 4;
-    stroke-linecap: square;
-    animation: flow 1s linear infinite;
+    stroke-width: 2.5;
+    stroke-dasharray: 8;
+    stroke-linecap: round;
+    animation: flow 20s linear infinite;
     marker-end: url(#arrowhead);
   }
 
   .flow-connector-success {
-    @apply stroke-emerald-500/80;
+    @apply stroke-emerald-500/90;
     marker-end: url(#arrowhead-success);
   }
 
   .flow-connector-error {
-    @apply stroke-rose-500/80;
+    @apply stroke-rose-500/90;
     marker-end: url(#arrowhead-error);
   }
 
   .zoom-controls {
-    @apply fixed bottom-4 right-4 flex gap-2 backdrop-blur-sm p-2 rounded-lg shadow-lg z-30;
+    @apply fixed bottom-4 right-4 flex gap-2 p-2 rounded-lg;
   }
 
   .zoom-btn {
-    @apply p-2 rounded-md bg-indigo-100/20 hover:bg-indigo-200/30 text-indigo-600 transition-colors duration-200;
+    @apply p-2 rounded-lg bg-indigo-100 text-indigo-700 hover:bg-indigo-200 transition-colors;
   }
 
   .note-text {
-    @apply text-gray-600;
+    @apply text-sm text-gray-600;
   }
 
-  .note-action {
-    @apply text-indigo-600 font-medium;
+  .note-text code {
+    @apply text-indigo-600 font-mono;
   }
 
-  .note-subject {
-    @apply text-emerald-600 font-medium;
+  .note-text em {
+    @apply text-violet-600 not-italic font-medium;
   }
 
-  .note-object {
-    @apply text-amber-600 font-medium;
+  .note-text strong {
+    @apply text-emerald-600 font-semibold;
   }
+}
 
-  .note-result {
-    @apply text-purple-600 font-medium;
+@keyframes flow {
+  from {
+    stroke-dashoffset: 200;
   }
-
-  .note-emoji {
-    @apply mr-2;
-  }
-
-  @keyframes flow {
-    from {
-      stroke-dashoffset: 8;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
+  to {
+    stroke-dashoffset: 0;
   }
 } 
