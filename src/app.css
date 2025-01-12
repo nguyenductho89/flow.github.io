@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .flow-node {
+    @apply p-4 rounded-lg shadow-md border-2 border-border transition-all duration-300 hover:shadow-lg;
+  }
+  
+  .flow-connector {
+    @apply border-2 border-accent;
+  }
+  
+  .flow-section {
+    @apply p-6 rounded-xl;
+  }
+} 
