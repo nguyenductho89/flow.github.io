@@ -237,54 +237,61 @@
           const arrowLength = 8;
           const adjustedEndY = endY + arrowLength;
 
+          // Calculate vertical spacing
+          const verticalGap = 60; // Increased gap between nodes
+          const horizontalGap = 100; // Base horizontal gap
+
           // Special handling for different connection types
           let path = '';
           let status = node.status;
 
           // Parallel paths from test-unit to test-ui and test-manual
           if (node.id === 'test-unit') {
-            const offset = index === 0 ? -100 : 100;
+            const offset = index === 0 ? -200 : 200;
             const midY = startY + (adjustedEndY - startY) / 3;
             path = `
               M ${startX} ${startY}
-              L ${startX} ${midY}
-              L ${endX} ${midY}
+              L ${startX} ${startY + verticalGap}
+              L ${endX} ${startY + verticalGap}
               L ${endX} ${adjustedEndY}
             `;
           }
           // Paths from parallel tests to cicd-build
           else if (node.id === 'test-ui' || node.id === 'test-manual') {
-            const offset = node.id === 'test-ui' ? -50 : 50;
-            const midY = startY + (adjustedEndY - startY) / 3;
+            const offset = node.id === 'test-ui' ? -horizontalGap : horizontalGap;
+            const midY = startY + (adjustedEndY - startY) / 2;
             path = `
               M ${startX} ${startY}
-              L ${startX} ${midY}
+              L ${startX} ${startY + verticalGap}
+              L ${startX + offset} ${startY + verticalGap}
+              L ${startX + offset} ${midY}
               L ${endX} ${midY}
               L ${endX} ${adjustedEndY}
             `;
           }
           // Decision points in CI/CD pipeline
           else if (node.id === 'cicd-tests-check' || node.id === 'cicd-review-check') {
-            const offset = index === 0 ? -80 : 80;
-            const midY = startY + (adjustedEndY - startY) / 3;
+            const offset = index === 0 ? -horizontalGap * 2 : horizontalGap * 2;
+            const midY = startY + (adjustedEndY - startY) / 2;
             path = `
               M ${startX} ${startY}
-              L ${startX} ${midY}
-              L ${endX + offset} ${midY}
-              L ${endX + offset} ${midY + (adjustedEndY - midY) / 2}
-              L ${endX} ${midY + (adjustedEndY - midY) / 2}
+              L ${startX} ${startY + verticalGap}
+              L ${startX + offset} ${startY + verticalGap}
+              L ${startX + offset} ${midY}
+              L ${endX} ${midY}
               L ${endX} ${adjustedEndY}
             `;
             status = nextId.includes('fix') || nextId.includes('feedback') ? 'error' : 'success';
           }
           // Feedback loops (fix-issues to automated, address-feedback to upload)
           else if (node.id === 'cicd-fix-issues' || node.id === 'cicd-address-feedback') {
-            const controlPointOffset = 150;
-            const midY = startY + (adjustedEndY - startY) / 2;
+            const controlPointOffset = horizontalGap * 3;
             path = `
               M ${startX} ${startY}
-              L ${startX - controlPointOffset} ${startY}
-              L ${startX - controlPointOffset} ${adjustedEndY}
+              L ${startX} ${startY + verticalGap}
+              L ${startX - controlPointOffset} ${startY + verticalGap}
+              L ${startX - controlPointOffset} ${adjustedEndY - verticalGap}
+              L ${endX} ${adjustedEndY - verticalGap}
               L ${endX} ${adjustedEndY}
             `;
             status = 'error';
@@ -292,9 +299,14 @@
           // Standard vertical paths
           else {
             const midY = startY + (adjustedEndY - startY) / 2;
+            const xDiff = endX - startX;
+            const xOffset = xDiff !== 0 ? Math.sign(xDiff) * horizontalGap : 0;
+            
             path = `
               M ${startX} ${startY}
-              L ${startX} ${midY}
+              L ${startX} ${startY + verticalGap}
+              ${xDiff !== 0 ? `L ${startX + xOffset} ${startY + verticalGap}` : ''}
+              ${xDiff !== 0 ? `L ${startX + xOffset} ${midY}` : `L ${startX} ${midY}`}
               L ${endX} ${midY}
               L ${endX} ${adjustedEndY}
             `;
