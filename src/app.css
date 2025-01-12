@@ -13,18 +13,21 @@
     fill: none;
     stroke-dasharray: 10;
     animation: flow 1s linear infinite;
+    marker-end: url(#arrowhead);
   }
 
   .flow-connector-success {
     @apply stroke-success;
+    marker-end: url(#arrowhead-success);
   }
 
   .flow-connector-error {
     @apply stroke-error;
+    marker-end: url(#arrowhead-error);
   }
   
   .flow-section {
-    @apply p-6 rounded-xl relative;
+    @apply p-6 rounded-xl relative z-0;
   }
 
   @keyframes flow {

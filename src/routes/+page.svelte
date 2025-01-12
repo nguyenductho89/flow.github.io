@@ -158,8 +158,14 @@
           const endX = endRect.left - containerRect.left + endRect.width / 2;
           const endY = endRect.top - containerRect.top;
           
-          const midY = (startY + endY) / 2;
-          const path = `M ${startX} ${startY} C ${startX} ${midY}, ${endX} ${midY}, ${endX} ${endY}`;
+          // Adjust end point to account for arrow marker
+          const angle = Math.atan2(endY - startY, endX - startX);
+          const arrowLength = 10;
+          const adjustedEndX = endX - arrowLength * Math.cos(angle);
+          const adjustedEndY = endY - arrowLength * Math.sin(angle);
+          
+          const midY = (startY + adjustedEndY) / 2;
+          const path = `M ${startX} ${startY} C ${startX} ${midY}, ${adjustedEndX} ${midY}, ${adjustedEndX} ${adjustedEndY}`;
           
           connections.push({
             path,
@@ -186,14 +192,49 @@
   <h1 class="text-4xl font-bold text-center mb-12 text-border">Development Workflow</h1>
   
   <div class="max-w-7xl mx-auto grid gap-8 relative" bind:this={container}>
-    <svg class="absolute inset-0 w-full h-full pointer-events-none" style="min-height: 100%">
-      {#each connections as conn}
-        <path 
-          class="flow-connector {conn.status ? `flow-connector-${conn.status}` : ''}"
-          d={conn.path}
-        />
-      {/each}
-    </svg>
+    {#if mounted}
+      <div class="absolute inset-0 pointer-events-none z-20">
+        <svg class="w-full h-full" style="min-height: 100%">
+          <!-- Arrow markers -->
+          <defs>
+            <marker
+              id="arrowhead"
+              markerWidth="10"
+              markerHeight="7"
+              refX="9"
+              refY="3.5"
+              orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#5D6CC0"/>
+            </marker>
+            <marker
+              id="arrowhead-success"
+              markerWidth="10"
+              markerHeight="7"
+              refX="9"
+              refY="3.5"
+              orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#2ECC71"/>
+            </marker>
+            <marker
+              id="arrowhead-error"
+              markerWidth="10"
+              markerHeight="7"
+              refX="9"
+              refY="3.5"
+              orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#E74C3C"/>
+            </marker>
+          </defs>
+          
+          {#each connections as conn}
+            <path 
+              class="flow-connector {conn.status ? `flow-connector-${conn.status}` : ''}"
+              d={conn.path}
+            />
+          {/each}
+        </svg>
+      </div>
+    {/if}
 
     <!-- Requirements Phase -->
     <section class="flow-section bg-requirements">
