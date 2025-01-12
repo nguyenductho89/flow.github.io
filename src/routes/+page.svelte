@@ -16,17 +16,14 @@
   let mounted = false;
   let container: HTMLElement;
   let connections: { path: string; status?: 'success' | 'error' }[] = [];
-  let scale = 1;
-  let minScale = 0.5;
-  let maxScale = 2;
 
   const flowNodes: FlowNode[] = [
     {
       id: 'req-gathering',
       title: 'Requirements Gathering',
       notes: [
-        '🎯 <span class="note-action">Defined</span> <span class="note-object">product requirements</span> for <span class="note-result">successful delivery</span>',
-        '🤝 <span class="note-action">Collaborated</span> with <span class="note-subject">stakeholders</span> to clarify <span class="note-object">goals</span>',
+        '🎯 <span class="note-action">Collaborated</span> with <span class="note-subject">stakeholders</span> to clarify <span class="note-object">requirements</span> and <span class="note-result">business goals</span>',
+        '📋 <span class="note-action">Defined</span> <span class="note-object">product features</span> for <span class="note-result">successful delivery</span>',
         '📊 <span class="note-action">Provided</span> <span class="note-object">detailed estimation</span> for <span class="note-result">project planning</span>'
       ],
       phase: 'requirements',
@@ -195,21 +192,6 @@
     }
   ];
 
-  function zoomIn() {
-    scale = Math.min(scale + 0.1, maxScale);
-    updateConnections();
-  }
-
-  function zoomOut() {
-    scale = Math.max(scale - 0.1, minScale);
-    updateConnections();
-  }
-
-  function resetZoom() {
-    scale = 1;
-    updateConnections();
-  }
-
   function updateConnections() {
     if (!container) return;
     
@@ -339,7 +321,6 @@
   <div class="max-w-[90vw] mx-auto overflow-visible">
     <div 
       class="flow-container relative grid gap-16 justify-items-center"
-      style="transform: scale({scale}); transform-origin: top center;"
       bind:this={container}
     >
       {#if mounted}
@@ -607,24 +588,5 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Zoom Controls -->
-  <div class="zoom-controls">
-    <button class="zoom-btn" on:click={zoomOut} title="Zoom Out">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
-      </svg>
-    </button>
-    <button class="zoom-btn" on:click={resetZoom} title="Reset Zoom">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 9V7h8v6H6z" clip-rule="evenodd" />
-      </svg>
-    </button>
-    <button class="zoom-btn" on:click={zoomIn} title="Zoom In">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-      </svg>
-    </button>
   </div>
 </div>
