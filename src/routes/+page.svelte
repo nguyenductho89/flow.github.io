@@ -131,7 +131,7 @@
       title: 'All Tests Passed?',
       notes: [],
       phase: 'cicd',
-      next: ['cicd-version-tagging', 'cicd-fix-issues']
+      next: ['cicd-fix-issues', 'cicd-version-tagging']
     },
     {
       id: 'cicd-fix-issues',
@@ -170,7 +170,7 @@
       title: 'App Store Review',
       notes: [],
       phase: 'cicd',
-      next: ['cicd-release', 'cicd-address-feedback']
+      next: ['cicd-address-feedback', 'cicd-release']
     },
     {
       id: 'cicd-address-feedback',
@@ -219,7 +219,7 @@
     flowNodes.forEach(node => {
       if (!node.next) return;
       
-      node.next.forEach(nextId => {
+      node.next.forEach((nextId, index) => {
         const startNode = nodes[node.id];
         const endNode = nodes[nextId];
         
@@ -237,20 +237,72 @@
           const arrowLength = 8;
           const adjustedEndY = endY + arrowLength;
 
-          // Calculate vertical midpoint
-          const midY = startY + (adjustedEndY - startY) / 2;
-          
-          // Create orthogonal path with right angles
-          const path = `
-            M ${startX} ${startY}
-            L ${startX} ${midY}
-            L ${endX} ${midY}
-            L ${endX} ${adjustedEndY}
-          `.trim();
-          
+          // Special handling for different connection types
+          let path = '';
+          let status = node.status;
+
+          // Parallel paths from test-unit to test-ui and test-manual
+          if (node.id === 'test-unit') {
+            const offset = index === 0 ? -100 : 100;
+            const midY = startY + (adjustedEndY - startY) / 3;
+            path = `
+              M ${startX} ${startY}
+              L ${startX} ${midY}
+              L ${endX} ${midY}
+              L ${endX} ${adjustedEndY}
+            `;
+          }
+          // Paths from parallel tests to cicd-build
+          else if (node.id === 'test-ui' || node.id === 'test-manual') {
+            const offset = node.id === 'test-ui' ? -50 : 50;
+            const midY = startY + (adjustedEndY - startY) / 3;
+            path = `
+              M ${startX} ${startY}
+              L ${startX} ${midY}
+              L ${endX} ${midY}
+              L ${endX} ${adjustedEndY}
+            `;
+          }
+          // Decision points in CI/CD pipeline
+          else if (node.id === 'cicd-tests-check' || node.id === 'cicd-review-check') {
+            const offset = index === 0 ? -80 : 80;
+            const midY = startY + (adjustedEndY - startY) / 3;
+            path = `
+              M ${startX} ${startY}
+              L ${startX} ${midY}
+              L ${endX + offset} ${midY}
+              L ${endX + offset} ${midY + (adjustedEndY - midY) / 2}
+              L ${endX} ${midY + (adjustedEndY - midY) / 2}
+              L ${endX} ${adjustedEndY}
+            `;
+            status = nextId.includes('fix') || nextId.includes('feedback') ? 'error' : 'success';
+          }
+          // Feedback loops (fix-issues to automated, address-feedback to upload)
+          else if (node.id === 'cicd-fix-issues' || node.id === 'cicd-address-feedback') {
+            const controlPointOffset = 150;
+            const midY = startY + (adjustedEndY - startY) / 2;
+            path = `
+              M ${startX} ${startY}
+              L ${startX - controlPointOffset} ${startY}
+              L ${startX - controlPointOffset} ${adjustedEndY}
+              L ${endX} ${adjustedEndY}
+            `;
+            status = 'error';
+          }
+          // Standard vertical paths
+          else {
+            const midY = startY + (adjustedEndY - startY) / 2;
+            path = `
+              M ${startX} ${startY}
+              L ${startX} ${midY}
+              L ${endX} ${midY}
+              L ${endX} ${adjustedEndY}
+            `;
+          }
+
           connections.push({
-            path,
-            status: node.status
+            path: path.trim(),
+            status
           });
         }
       });
@@ -272,10 +324,10 @@
 <div class="min-h-screen p-4">
   <h1 class="text-3xl font-bold text-center mb-8 text-border">Development Workflow</h1>
   
-  <div class="max-w-6xl mx-auto overflow-x-auto">
+  <div class="max-w-[90vw] mx-auto overflow-visible">
     <div 
       class="flow-container relative grid gap-16 justify-items-center"
-      style="transform: scale({scale})"
+      style="transform: scale({scale}); transform-origin: top center;"
       bind:this={container}
     >
       {#if mounted}

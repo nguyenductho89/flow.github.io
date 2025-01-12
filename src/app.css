@@ -5,12 +5,16 @@
 @layer components {
   .flow-container {
     @apply relative p-8 min-h-screen;
-    transform-origin: center;
-    transition: transform 0.3s ease;
+    margin: 0 auto;
+    width: fit-content;
+    min-width: 100%;
+    padding-bottom: 10rem;
   }
 
   .phase-container {
     @apply relative rounded-xl p-8 mb-12;
+    width: fit-content;
+    min-width: 100%;
   }
 
   .phase-container[data-phase="requirements"] {
