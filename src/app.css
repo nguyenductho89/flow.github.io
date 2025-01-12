@@ -4,14 +4,35 @@
 
 @layer components {
   .flow-node {
-    @apply p-4 rounded-lg shadow-md border-2 border-border transition-all duration-300 hover:shadow-lg;
+    @apply p-4 rounded-lg shadow-md border-2 border-border transition-all duration-300 hover:shadow-lg relative z-10 bg-white;
   }
   
   .flow-connector {
-    @apply border-2 border-accent;
+    @apply stroke-accent;
+    stroke-width: 2;
+    fill: none;
+    stroke-dasharray: 10;
+    animation: flow 1s linear infinite;
+  }
+
+  .flow-connector-success {
+    @apply stroke-success;
+  }
+
+  .flow-connector-error {
+    @apply stroke-error;
   }
   
   .flow-section {
-    @apply p-6 rounded-xl;
+    @apply p-6 rounded-xl relative;
+  }
+
+  @keyframes flow {
+    from {
+      stroke-dashoffset: 20;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
   }
 } 
