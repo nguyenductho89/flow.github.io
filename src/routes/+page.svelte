@@ -1,12 +1,11 @@
 <script lang="ts">
   import { Card } from 'flowbite-svelte';
   import { onMount } from 'svelte';
-  import '../app.css';
 
   interface FlowNode {
     title: string;
     notes: string[];
-    phase: 'requirements' | 'development' | 'testing' | 'cicd';
+    phase: 'sdlc' | 'management';
     id: string;
     next?: string[];
     status?: 'success' | 'error';
