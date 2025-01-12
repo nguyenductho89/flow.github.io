@@ -121,7 +121,36 @@
         'Deployed builds to TestFlight and DeployGate'
       ],
       phase: 'cicd',
-      next: ['cicd-upload']
+      next: ['cicd-tests-check']
+    },
+    {
+      id: 'cicd-tests-check',
+      title: 'All Tests Passed?',
+      notes: [],
+      phase: 'cicd',
+      next: ['cicd-version-tagging', 'cicd-fix-issues']
+    },
+    {
+      id: 'cicd-fix-issues',
+      title: 'Fix Issues',
+      notes: [
+        'Debugged failures',
+        'Conducted regression tests post-fix'
+      ],
+      phase: 'cicd',
+      next: ['cicd-automated'],
+      status: 'error'
+    },
+    {
+      id: 'cicd-version-tagging',
+      title: 'Version Tagging',
+      notes: [
+        'Applied semantic versioning',
+        'Git tagging for release management'
+      ],
+      phase: 'cicd',
+      next: ['cicd-upload'],
+      status: 'success'
     },
     {
       id: 'cicd-upload',
@@ -129,6 +158,34 @@
       notes: [
         'Managed App Store Connect uploads',
         'Prepared TestFlight for QA and client feedback'
+      ],
+      phase: 'cicd',
+      next: ['cicd-review-check']
+    },
+    {
+      id: 'cicd-review-check',
+      title: 'App Store Review',
+      notes: [],
+      phase: 'cicd',
+      next: ['cicd-release', 'cicd-address-feedback']
+    },
+    {
+      id: 'cicd-address-feedback',
+      title: 'Address Feedback',
+      notes: [
+        'Reviewed App Store guidelines',
+        'Resolved violations and resubmitted'
+      ],
+      phase: 'cicd',
+      next: ['cicd-upload'],
+      status: 'error'
+    },
+    {
+      id: 'cicd-release',
+      title: 'Release to App Store',
+      notes: [
+        'Monitored analytics and crash reports',
+        'Ensured app quality post-release'
       ],
       phase: 'cicd',
       status: 'success'
@@ -240,18 +297,27 @@
     <section class="flow-section bg-requirements">
       <h2 class="text-2xl font-bold mb-8 text-border">Requirements Phase</h2>
       <div class="grid gap-12">
-        {#each flowNodes.filter(node => node.phase === 'requirements') as node}
-          <div class="flow-node" bind:this={nodes[node.id]}>
-            <Card>
-              <h3 class="text-xl font-semibold mb-3">{node.title}</h3>
-              <ul class="list-disc pl-5 space-y-2">
-                {#each node.notes as note}
-                  <li>{note}</li>
-                {/each}
-              </ul>
-            </Card>
-          </div>
-        {/each}
+        <div class="flow-node" bind:this={nodes['req-gathering']}>
+          <Card>
+            <h3 class="text-xl font-semibold mb-3">Requirements Gathering</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              {#each flowNodes.find(n => n.id === 'req-gathering')?.notes || [] as note}
+                <li>{note}</li>
+              {/each}
+            </ul>
+          </Card>
+        </div>
+
+        <div class="flow-node" bind:this={nodes['req-architecture']}>
+          <Card>
+            <h3 class="text-xl font-semibold mb-3">Architecture Planning</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              {#each flowNodes.find(n => n.id === 'req-architecture')?.notes || [] as note}
+                <li>{note}</li>
+              {/each}
+            </ul>
+          </Card>
+        </div>
       </div>
     </section>
 
@@ -259,37 +325,81 @@
     <section class="flow-section bg-development">
       <h2 class="text-2xl font-bold mb-8 text-border">Development Phase</h2>
       <div class="grid gap-12">
-        {#each flowNodes.filter(node => node.phase === 'development') as node}
-          <div class="flow-node" bind:this={nodes[node.id]}>
-            <Card>
-              <h3 class="text-xl font-semibold mb-3">{node.title}</h3>
-              <ul class="list-disc pl-5 space-y-2">
-                {#each node.notes as note}
-                  <li>{note}</li>
-                {/each}
-              </ul>
-            </Card>
-          </div>
-        {/each}
+        <div class="flow-node" bind:this={nodes['dev-implementation']}>
+          <Card>
+            <h3 class="text-xl font-semibold mb-3">Code Implementation</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              {#each flowNodes.find(n => n.id === 'dev-implementation')?.notes || [] as note}
+                <li>{note}</li>
+              {/each}
+            </ul>
+          </Card>
+        </div>
+
+        <div class="flow-node" bind:this={nodes['dev-version-control']}>
+          <Card>
+            <h3 class="text-xl font-semibold mb-3">Version Control</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              {#each flowNodes.find(n => n.id === 'dev-version-control')?.notes || [] as note}
+                <li>{note}</li>
+              {/each}
+            </ul>
+          </Card>
+        </div>
+
+        <div class="flow-node" bind:this={nodes['dev-code-review']}>
+          <Card>
+            <h3 class="text-xl font-semibold mb-3">Code Review and Mentorship</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              {#each flowNodes.find(n => n.id === 'dev-code-review')?.notes || [] as note}
+                <li>{note}</li>
+              {/each}
+            </ul>
+          </Card>
+        </div>
       </div>
     </section>
 
     <!-- Testing Phase -->
     <section class="flow-section bg-testing">
       <h2 class="text-2xl font-bold mb-8 text-border">Testing Phase</h2>
-      <div class="grid grid-cols-3 gap-12">
-        {#each flowNodes.filter(node => node.phase === 'testing') as node}
-          <div class="flow-node" bind:this={nodes[node.id]}>
+      <div class="grid gap-12">
+        <!-- Unit Testing -->
+        <div class="flow-node" bind:this={nodes['test-unit']}>
+          <Card>
+            <h3 class="text-xl font-semibold mb-3">Unit Testing</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              {#each flowNodes.find(n => n.id === 'test-unit')?.notes || [] as note}
+                <li>{note}</li>
+              {/each}
+            </ul>
+          </Card>
+        </div>
+
+        <!-- Parallel Testing -->
+        <div class="grid grid-cols-2 gap-12">
+          <div class="flow-node" bind:this={nodes['test-ui']}>
             <Card>
-              <h3 class="text-xl font-semibold mb-3">{node.title}</h3>
+              <h3 class="text-xl font-semibold mb-3">UI Testing</h3>
               <ul class="list-disc pl-5 space-y-2">
-                {#each node.notes as note}
+                {#each flowNodes.find(n => n.id === 'test-ui')?.notes || [] as note}
                   <li>{note}</li>
                 {/each}
               </ul>
             </Card>
           </div>
-        {/each}
+
+          <div class="flow-node" bind:this={nodes['test-manual']}>
+            <Card>
+              <h3 class="text-xl font-semibold mb-3">Manual Testing</h3>
+              <ul class="list-disc pl-5 space-y-2">
+                {#each flowNodes.find(n => n.id === 'test-manual')?.notes || [] as note}
+                  <li>{note}</li>
+                {/each}
+              </ul>
+            </Card>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -297,18 +407,126 @@
     <section class="flow-section bg-cicd">
       <h2 class="text-2xl font-bold mb-8 text-border">CI/CD Pipeline</h2>
       <div class="grid gap-12">
-        {#each flowNodes.filter(node => node.phase === 'cicd') as node}
-          <div class="flow-node" bind:this={nodes[node.id]}>
+        <!-- Build and Automated Build -->
+        <div class="flow-node" bind:this={nodes['cicd-build']}>
+          <Card>
+            <h3 class="text-xl font-semibold mb-3">Build Configuration</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              {#each flowNodes.find(n => n.id === 'cicd-build')?.notes || [] as note}
+                <li>{note}</li>
+              {/each}
+            </ul>
+          </Card>
+        </div>
+
+        <div class="flow-node" bind:this={nodes['cicd-automated']}>
+          <Card>
+            <h3 class="text-xl font-semibold mb-3">Automated Build</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              {#each flowNodes.find(n => n.id === 'cicd-automated')?.notes || [] as note}
+                <li>{note}</li>
+              {/each}
+            </ul>
+          </Card>
+        </div>
+
+        <!-- Tests Check Decision -->
+        <div class="grid grid-cols-3 gap-12">
+          <div class="flow-node" bind:this={nodes['cicd-tests-check']}>
+            <Card class="text-center">
+              <h3 class="text-xl font-semibold mb-3">All Tests Passed?</h3>
+              <div class="flex justify-around mt-4">
+                <span class="text-error">No</span>
+                <span class="text-success">Yes</span>
+              </div>
+            </Card>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-12">
+          <!-- Left path (Fix Issues) -->
+          <div class="flow-node" bind:this={nodes['cicd-fix-issues']}>
             <Card>
-              <h3 class="text-xl font-semibold mb-3">{node.title}</h3>
+              <h3 class="text-xl font-semibold mb-3">Fix Issues</h3>
               <ul class="list-disc pl-5 space-y-2">
-                {#each node.notes as note}
+                {#each flowNodes.find(n => n.id === 'cicd-fix-issues')?.notes || [] as note}
                   <li>{note}</li>
                 {/each}
               </ul>
             </Card>
           </div>
-        {/each}
+
+          <div class="col-start-3">
+            <div class="flow-node" bind:this={nodes['cicd-version-tagging']}>
+              <Card>
+                <h3 class="text-xl font-semibold mb-3">Version Tagging</h3>
+                <ul class="list-disc pl-5 space-y-2">
+                  {#each flowNodes.find(n => n.id === 'cicd-version-tagging')?.notes || [] as note}
+                    <li>{note}</li>
+                  {/each}
+                </ul>
+              </Card>
+            </div>
+          </div>
+        </div>
+
+        <!-- App Store Upload -->
+        <div class="grid grid-cols-3 gap-12">
+          <div class="col-start-2">
+            <div class="flow-node" bind:this={nodes['cicd-upload']}>
+              <Card>
+                <h3 class="text-xl font-semibold mb-3">App Store Upload</h3>
+                <ul class="list-disc pl-5 space-y-2">
+                  {#each flowNodes.find(n => n.id === 'cicd-upload')?.notes || [] as note}
+                    <li>{note}</li>
+                  {/each}
+                </ul>
+              </Card>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review Decision -->
+        <div class="grid grid-cols-3 gap-12">
+          <div class="col-start-2">
+            <div class="flow-node" bind:this={nodes['cicd-review-check']}>
+              <Card class="text-center">
+                <h3 class="text-xl font-semibold mb-3">App Store Review</h3>
+                <div class="flex justify-around mt-4">
+                  <span class="text-error">Rejected</span>
+                  <span class="text-success">Approved</span>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-12">
+          <!-- Left path (Address Feedback) -->
+          <div class="flow-node" bind:this={nodes['cicd-address-feedback']}>
+            <Card>
+              <h3 class="text-xl font-semibold mb-3">Address Feedback</h3>
+              <ul class="list-disc pl-5 space-y-2">
+                {#each flowNodes.find(n => n.id === 'cicd-address-feedback')?.notes || [] as note}
+                  <li>{note}</li>
+                {/each}
+              </ul>
+            </Card>
+          </div>
+
+          <div class="col-start-3">
+            <div class="flow-node" bind:this={nodes['cicd-release']}>
+              <Card>
+                <h3 class="text-xl font-semibold mb-3">Release to App Store</h3>
+                <ul class="list-disc pl-5 space-y-2">
+                  {#each flowNodes.find(n => n.id === 'cicd-release')?.notes || [] as note}
+                    <li>{note}</li>
+                  {/each}
+                </ul>
+              </Card>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
