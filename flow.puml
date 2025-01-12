@@ -1,0 +1,161 @@
+@startuml
+skinparam linetype ortho
+skinparam style strictuml
+
+' Phase colors (modern vibrant backgrounds)
+!define REQUIREMENTS_BG #BBE6FC
+!define DEVELOPMENT_BG #B5EAD7
+!define TESTING_BG #E2BEF1
+!define CICD_BG #FFD3B6
+
+' Status and accent colors
+!define SUCCESS_COLOR #2ECC71
+!define ERROR_COLOR #E74C3C
+!define ACCENT_COLOR #5D6CC0
+!define BORDER_COLOR #2C3E50
+!define DIAMOND_COLOR #F39C12
+
+skinparam {
+    ActivityBackgroundColor white
+    ActivityFontColor black
+    ActivityBorderColor BORDER_COLOR
+    ArrowColor ACCENT_COLOR
+    ArrowThickness 2
+    NoteBorderColor ACCENT_COLOR
+    NoteBackgroundColor white
+    DiamondBackgroundColor white
+    DiamondBorderColor DIAMOND_COLOR
+    DiamondFontColor black
+    
+    PartitionFontColor BORDER_COLOR
+    PartitionBorderColor ACCENT_COLOR
+    PartitionFontStyle bold
+    
+    DefaultFontSize 12
+    DefaultTextAlignment center
+    
+    RoundCorner 10
+    
+    ActivityShape roundBox
+    ActivityBorderThickness 1
+    
+    NoteShadowing true
+    NoteTextAlignment left
+}
+
+start
+
+partition "Requirements Phase" REQUIREMENTS_BG {
+    :Requirements Gathering;
+    note right
+    - Defined product requirements
+    - Collaborated with stakeholders to clarify goals
+    - Provided detailed effort estimation
+    end note
+    
+    :Architecture Planning;
+    note right
+    - System design (data flow and modular architecture)
+    - Technology stack selection
+    - Applied design patterns for scalability
+    end note
+}
+
+partition "Development Phase" DEVELOPMENT_BG {
+    :Code Implementation;
+    note right
+    - Swift/SwiftUI for iOS apps
+    - Implemented reusable libraries
+    - Integrated APIs and optimized performance
+    end note
+
+    :Version Control;
+    note right
+    - Maintained Git branching strategy
+    - Conducted thorough code reviews for pull requests
+    - Used CI/CD for automated builds
+    end note
+
+    :Code Review and Mentorship;
+    note right
+    - Enforced coding standards
+    - Provided mentorship to junior developers
+    - Improved team efficiency and code quality
+    end note
+}
+
+partition "Testing Phase" TESTING_BG {
+    :Unit Testing;
+    note right
+    - XCTest for logic coverage
+    - Mocking API responses for edge cases
+    end note
+
+    fork
+        :UI Testing;
+        note right
+        - Automated tests with XCUITest
+        - Focused on usability and cross-device compatibility
+        end note
+    fork again
+        :Manual Testing;
+        note right
+        - Conducted functional and regression testing
+        - Ensured alignment with client requirements
+        end note
+    end fork
+}
+
+partition "CI/CD Pipeline" CICD_BG {
+    :Build Configuration;
+    note right
+    - Configured Xcode settings and environments
+    - Handled signing certificates
+    end note
+
+    :Automated Build;
+    note right
+    - Integrated Fastlane for build automation
+    - Deployed builds to TestFlight and DeployGate
+    end note
+
+    if (All Tests Passed?) then (yes)
+        :Version Tagging;
+        note right
+        - Applied semantic versioning
+        - Git tagging for release management
+        end note
+
+        :App Store Upload;
+        note right
+        - Managed App Store Connect uploads
+        - Prepared TestFlight for QA and client feedback
+        end note
+
+        if (App Store Review) then (approved)
+            -[#SUCCESS_COLOR]-> :Release to App Store;
+            note right
+            - Monitored analytics and crash reports
+            - Ensured app quality post-release
+            end note
+        else (rejected)
+            -[#ERROR_COLOR]-> :Address Feedback;
+            note right
+            - Reviewed App Store guidelines
+            - Resolved violations and resubmitted
+            end note
+            -[#ACCENT_COLOR]-> :App Store Upload;
+        endif
+    else (no)
+        -[#ERROR_COLOR]-> :Fix Issues;
+        note right
+        - Debugged failures
+        - Conducted regression tests post-fix
+        end note
+        -[#ACCENT_COLOR]-> :Automated Build;
+    endif
+}
+
+stop
+
+@enduml
