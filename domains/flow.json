@@ -1,0 +1,13 @@
+{
+  "$schema": "../schemas/domain.json",
+  "description": "Interactive iOS development workflow diagram",
+  "domain": "flow",
+  "owner": {
+    "email": "nguyenductho89@gmail.com",
+    "username": "nguyenductho89"
+  },
+  "record": {
+    "CNAME": "your-github-username.github.io"
+  },
+  "type": "personal"
+} 
