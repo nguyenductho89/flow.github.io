@@ -25,9 +25,9 @@
       id: 'req-gathering',
       title: 'Requirements Gathering',
       notes: [
-        'Defined product requirements',
-        'Collaborated with stakeholders to clarify goals',
-        'Provided detailed effort estimation'
+        '🎯 <span class="note-action">Defined</span> <span class="note-object">product requirements</span> for <span class="note-result">successful delivery</span>',
+        '🤝 <span class="note-action">Collaborated</span> with <span class="note-subject">stakeholders</span> to clarify <span class="note-object">goals</span>',
+        '📊 <span class="note-action">Provided</span> <span class="note-object">detailed estimation</span> for <span class="note-result">project planning</span>'
       ],
       phase: 'requirements',
       next: ['req-architecture']
@@ -36,9 +36,9 @@
       id: 'req-architecture',
       title: 'Architecture Planning',
       notes: [
-        'System design (data flow and modular architecture)',
-        'Technology stack selection',
-        'Applied design patterns for scalability'
+        '🏗️ <span class="note-action">Designed</span> <span class="note-object">system architecture</span> for <span class="note-result">modular flow</span>',
+        '🔧 <span class="note-action">Selected</span> optimal <span class="note-object">technology stack</span>',
+        '📐 <span class="note-action">Applied</span> <span class="note-object">design patterns</span> for <span class="note-result">scalability</span>'
       ],
       phase: 'requirements',
       next: ['dev-implementation']
@@ -47,9 +47,9 @@
       id: 'dev-implementation',
       title: 'Code Implementation',
       notes: [
-        'Swift/SwiftUI for iOS apps',
-        'Implemented reusable libraries',
-        'Integrated APIs and optimized performance'
+        '📱 <span class="note-action">Built</span> <span class="note-object">iOS apps</span> using <span class="note-subject">Swift/SwiftUI</span>',
+        '📦 <span class="note-action">Created</span> <span class="note-object">reusable libraries</span> for <span class="note-result">efficiency</span>',
+        '🔄 <span class="note-action">Integrated</span> <span class="note-object">APIs</span> with <span class="note-result">optimized performance</span>'
       ],
       phase: 'development',
       next: ['dev-version-control']
@@ -58,9 +58,9 @@
       id: 'dev-version-control',
       title: 'Version Control',
       notes: [
-        'Maintained Git branching strategy',
-        'Conducted thorough code reviews for pull requests',
-        'Used CI/CD for automated builds'
+        '🌿 <span class="note-action">Maintained</span> <span class="note-object">Git branching strategy</span>',
+        '👀 <span class="note-action">Conducted</span> <span class="note-object">code reviews</span> for <span class="note-result">quality assurance</span>',
+        '🔄 <span class="note-action">Implemented</span> <span class="note-object">CI/CD builds</span>'
       ],
       phase: 'development',
       next: ['dev-code-review']
@@ -69,9 +69,9 @@
       id: 'dev-code-review',
       title: 'Code Review and Mentorship',
       notes: [
-        'Enforced coding standards',
-        'Provided mentorship to junior developers',
-        'Improved team efficiency and code quality'
+        '📋 <span class="note-action">Enforced</span> <span class="note-object">coding standards</span> for <span class="note-result">consistency</span>',
+        '🎓 <span class="note-action">Mentored</span> <span class="note-subject">junior developers</span>',
+        '⚡ <span class="note-action">Improved</span> <span class="note-object">team efficiency</span> and <span class="note-result">code quality</span>'
       ],
       phase: 'development',
       next: ['test-unit']
@@ -80,8 +80,8 @@
       id: 'test-unit',
       title: 'Unit Testing',
       notes: [
-        'XCTest for logic coverage',
-        'Mocking API responses for edge cases'
+        '🎯 <span class="note-action">Implemented</span> <span class="note-object">XCTest coverage</span>',
+        '🔄 <span class="note-action">Created</span> <span class="note-object">API mocks</span> for <span class="note-result">edge cases</span>'
       ],
       phase: 'testing',
       next: ['test-ui', 'test-manual']
@@ -90,8 +90,8 @@
       id: 'test-ui',
       title: 'UI Testing',
       notes: [
-        'Automated tests with XCUITest',
-        'Focused on usability and cross-device compatibility'
+        '🤖 <span class="note-action">Automated</span> <span class="note-object">UI tests</span> with <span class="note-subject">XCUITest</span>',
+        '📱 <span class="note-action">Verified</span> <span class="note-object">cross-device compatibility</span>'
       ],
       phase: 'testing',
       next: ['cicd-build']
@@ -100,8 +100,8 @@
       id: 'test-manual',
       title: 'Manual Testing',
       notes: [
-        'Conducted functional and regression testing',
-        'Ensured alignment with client requirements'
+        '🔍 <span class="note-action">Conducted</span> <span class="note-object">functional testing</span>',
+        '✅ <span class="note-action">Validated</span> <span class="note-object">client requirements</span>'
       ],
       phase: 'testing',
       next: ['cicd-build']
@@ -110,8 +110,8 @@
       id: 'cicd-build',
       title: 'Build Configuration',
       notes: [
-        'Configured Xcode settings and environments',
-        'Handled signing certificates'
+        '⚙️ <span class="note-action">Configured</span> <span class="note-object">Xcode settings</span>',
+        '🔐 <span class="note-action">Managed</span> <span class="note-object">signing certificates</span>'
       ],
       phase: 'cicd',
       next: ['cicd-automated']
@@ -120,8 +120,8 @@
       id: 'cicd-automated',
       title: 'Automated Build',
       notes: [
-        'Integrated Fastlane for build automation',
-        'Deployed builds to TestFlight and DeployGate'
+        '🚀 <span class="note-action">Integrated</span> <span class="note-subject">Fastlane</span> for <span class="note-result">automation</span>',
+        '📲 <span class="note-action">Deployed</span> to <span class="note-object">TestFlight</span> and <span class="note-object">DeployGate</span>'
       ],
       phase: 'cicd',
       next: ['cicd-tests-check']
@@ -325,10 +325,10 @@
       <!-- Requirements Phase -->
       <div class="flow-node w-full max-w-2xl" bind:this={nodes['req-gathering']}>
         <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-          <h3 class="text-xl font-semibold mb-3">Requirements Gathering</h3>
-          <ul class="list-disc pl-5 space-y-2">
+          <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'req-gathering')?.title}</h3>
+          <ul class="space-y-2">
             {#each flowNodes.find(n => n.id === 'req-gathering')?.notes || [] as note}
-              <li>{note}</li>
+              <li class="note-text">{@html note}</li>
             {/each}
           </ul>
         </Card>
@@ -336,10 +336,10 @@
 
       <div class="flow-node w-full max-w-2xl" bind:this={nodes['req-architecture']}>
         <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-          <h3 class="text-xl font-semibold mb-3">Architecture Planning</h3>
-          <ul class="list-disc pl-5 space-y-2">
+          <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'req-architecture')?.title}</h3>
+          <ul class="space-y-2">
             {#each flowNodes.find(n => n.id === 'req-architecture')?.notes || [] as note}
-              <li>{note}</li>
+              <li class="note-text">{@html note}</li>
             {/each}
           </ul>
         </Card>
@@ -348,10 +348,10 @@
       <!-- Development Phase -->
       <div class="flow-node w-full max-w-2xl" bind:this={nodes['dev-implementation']}>
         <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-          <h3 class="text-xl font-semibold mb-3">Code Implementation</h3>
-          <ul class="list-disc pl-5 space-y-2">
+          <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'dev-implementation')?.title}</h3>
+          <ul class="space-y-2">
             {#each flowNodes.find(n => n.id === 'dev-implementation')?.notes || [] as note}
-              <li>{note}</li>
+              <li class="note-text">{@html note}</li>
             {/each}
           </ul>
         </Card>
@@ -359,10 +359,10 @@
 
       <div class="flow-node w-full max-w-2xl" bind:this={nodes['dev-version-control']}>
         <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-          <h3 class="text-xl font-semibold mb-3">Version Control</h3>
-          <ul class="list-disc pl-5 space-y-2">
+          <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'dev-version-control')?.title}</h3>
+          <ul class="space-y-2">
             {#each flowNodes.find(n => n.id === 'dev-version-control')?.notes || [] as note}
-              <li>{note}</li>
+              <li class="note-text">{@html note}</li>
             {/each}
           </ul>
         </Card>
@@ -370,10 +370,10 @@
 
       <div class="flow-node w-full max-w-2xl" bind:this={nodes['dev-code-review']}>
         <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-          <h3 class="text-xl font-semibold mb-3">Code Review and Mentorship</h3>
-          <ul class="list-disc pl-5 space-y-2">
+          <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'dev-code-review')?.title}</h3>
+          <ul class="space-y-2">
             {#each flowNodes.find(n => n.id === 'dev-code-review')?.notes || [] as note}
-              <li>{note}</li>
+              <li class="note-text">{@html note}</li>
             {/each}
           </ul>
         </Card>
@@ -382,10 +382,10 @@
       <!-- Testing Phase -->
       <div class="flow-node w-full max-w-2xl" bind:this={nodes['test-unit']}>
         <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-          <h3 class="text-xl font-semibold mb-3">Unit Testing</h3>
-          <ul class="list-disc pl-5 space-y-2">
+          <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'test-unit')?.title}</h3>
+          <ul class="space-y-2">
             {#each flowNodes.find(n => n.id === 'test-unit')?.notes || [] as note}
-              <li>{note}</li>
+              <li class="note-text">{@html note}</li>
             {/each}
           </ul>
         </Card>
@@ -395,10 +395,10 @@
       <div class="grid grid-cols-2 gap-12 w-full max-w-4xl">
         <div class="flow-node" bind:this={nodes['test-ui']}>
           <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-            <h3 class="text-xl font-semibold mb-3">UI Testing</h3>
-            <ul class="list-disc pl-5 space-y-2">
+            <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'test-ui')?.title}</h3>
+            <ul class="space-y-2">
               {#each flowNodes.find(n => n.id === 'test-ui')?.notes || [] as note}
-                <li>{note}</li>
+                <li class="note-text">{@html note}</li>
               {/each}
             </ul>
           </Card>
@@ -406,10 +406,10 @@
 
         <div class="flow-node" bind:this={nodes['test-manual']}>
           <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-            <h3 class="text-xl font-semibold mb-3">Manual Testing</h3>
-            <ul class="list-disc pl-5 space-y-2">
+            <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'test-manual')?.title}</h3>
+            <ul class="space-y-2">
               {#each flowNodes.find(n => n.id === 'test-manual')?.notes || [] as note}
-                <li>{note}</li>
+                <li class="note-text">{@html note}</li>
               {/each}
             </ul>
           </Card>
@@ -419,10 +419,10 @@
       <!-- CI/CD Pipeline -->
       <div class="flow-node w-full max-w-2xl" bind:this={nodes['cicd-build']}>
         <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-          <h3 class="text-xl font-semibold mb-3">Build Configuration</h3>
-          <ul class="list-disc pl-5 space-y-2">
+          <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'cicd-build')?.title}</h3>
+          <ul class="space-y-2">
             {#each flowNodes.find(n => n.id === 'cicd-build')?.notes || [] as note}
-              <li>{note}</li>
+              <li class="note-text">{@html note}</li>
             {/each}
           </ul>
         </Card>
@@ -430,10 +430,10 @@
 
       <div class="flow-node w-full max-w-2xl" bind:this={nodes['cicd-automated']}>
         <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-          <h3 class="text-xl font-semibold mb-3">Automated Build</h3>
-          <ul class="list-disc pl-5 space-y-2">
+          <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'cicd-automated')?.title}</h3>
+          <ul class="space-y-2">
             {#each flowNodes.find(n => n.id === 'cicd-automated')?.notes || [] as note}
-              <li>{note}</li>
+              <li class="note-text">{@html note}</li>
             {/each}
           </ul>
         </Card>
@@ -442,7 +442,7 @@
       <!-- Tests Check Decision -->
       <div class="flow-node w-64" bind:this={nodes['cicd-tests-check']}>
         <Card class="!bg-transparent !border-0 !shadow-none !p-0 text-center">
-          <h3 class="text-xl font-semibold mb-3">All Tests Passed?</h3>
+          <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'cicd-tests-check')?.title}</h3>
           <div class="flex justify-around mt-4">
             <span class="text-error">No</span>
             <span class="text-success">Yes</span>
@@ -454,10 +454,10 @@
         <!-- Left path (Fix Issues) -->
         <div class="flow-node" bind:this={nodes['cicd-fix-issues']}>
           <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-            <h3 class="text-xl font-semibold mb-3">Fix Issues</h3>
-            <ul class="list-disc pl-5 space-y-2">
+            <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'cicd-fix-issues')?.title}</h3>
+            <ul class="space-y-2">
               {#each flowNodes.find(n => n.id === 'cicd-fix-issues')?.notes || [] as note}
-                <li>{note}</li>
+                <li class="note-text">{@html note}</li>
               {/each}
             </ul>
           </Card>
@@ -465,10 +465,10 @@
 
         <div class="flow-node" bind:this={nodes['cicd-version-tagging']}>
           <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-            <h3 class="text-xl font-semibold mb-3">Version Tagging</h3>
-            <ul class="list-disc pl-5 space-y-2">
+            <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'cicd-version-tagging')?.title}</h3>
+            <ul class="space-y-2">
               {#each flowNodes.find(n => n.id === 'cicd-version-tagging')?.notes || [] as note}
-                <li>{note}</li>
+                <li class="note-text">{@html note}</li>
               {/each}
             </ul>
           </Card>
@@ -478,10 +478,10 @@
       <!-- App Store Upload -->
       <div class="flow-node w-full max-w-2xl" bind:this={nodes['cicd-upload']}>
         <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-          <h3 class="text-xl font-semibold mb-3">App Store Upload</h3>
-          <ul class="list-disc pl-5 space-y-2">
+          <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'cicd-upload')?.title}</h3>
+          <ul class="space-y-2">
             {#each flowNodes.find(n => n.id === 'cicd-upload')?.notes || [] as note}
-              <li>{note}</li>
+              <li class="note-text">{@html note}</li>
             {/each}
           </ul>
         </Card>
@@ -490,7 +490,7 @@
       <!-- Review Decision -->
       <div class="flow-node w-64" bind:this={nodes['cicd-review-check']}>
         <Card class="!bg-transparent !border-0 !shadow-none !p-0 text-center">
-          <h3 class="text-xl font-semibold mb-3">App Store Review</h3>
+          <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'cicd-review-check')?.title}</h3>
           <div class="flex justify-around mt-4">
             <span class="text-error">Rejected</span>
             <span class="text-success">Approved</span>
@@ -502,10 +502,10 @@
         <!-- Left path (Address Feedback) -->
         <div class="flow-node" bind:this={nodes['cicd-address-feedback']}>
           <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-            <h3 class="text-xl font-semibold mb-3">Address Feedback</h3>
-            <ul class="list-disc pl-5 space-y-2">
+            <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'cicd-address-feedback')?.title}</h3>
+            <ul class="space-y-2">
               {#each flowNodes.find(n => n.id === 'cicd-address-feedback')?.notes || [] as note}
-                <li>{note}</li>
+                <li class="note-text">{@html note}</li>
               {/each}
             </ul>
           </Card>
@@ -513,10 +513,10 @@
 
         <div class="flow-node" bind:this={nodes['cicd-release']}>
           <Card class="!bg-transparent !border-0 !shadow-none !p-0">
-            <h3 class="text-xl font-semibold mb-3">Release to App Store</h3>
-            <ul class="list-disc pl-5 space-y-2">
+            <h3 class="text-xl font-semibold mb-3">{flowNodes.find(n => n.id === 'cicd-release')?.title}</h3>
+            <ul class="space-y-2">
               {#each flowNodes.find(n => n.id === 'cicd-release')?.notes || [] as note}
-                <li>{note}</li>
+                <li class="note-text">{@html note}</li>
               {/each}
             </ul>
           </Card>

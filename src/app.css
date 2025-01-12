@@ -8,11 +8,11 @@
   }
 
   .flow-node {
-    @apply p-3 rounded-lg shadow-sm border border-border/20 transition-all duration-300 hover:shadow-md relative z-10 backdrop-blur-sm hover:scale-105;
+    @apply p-3 rounded-lg shadow-sm border border-indigo-200/30 transition-all duration-300 hover:shadow-md relative z-10 backdrop-blur-sm hover:scale-105;
   }
   
   .flow-connector {
-    @apply stroke-accent/70;
+    @apply stroke-indigo-400/70;
     stroke-width: 2;
     fill: none;
     stroke-dasharray: 4;
@@ -22,12 +22,12 @@
   }
 
   .flow-connector-success {
-    @apply stroke-success/80;
+    @apply stroke-emerald-500/80;
     marker-end: url(#arrowhead-success);
   }
 
   .flow-connector-error {
-    @apply stroke-error/80;
+    @apply stroke-rose-500/80;
     marker-end: url(#arrowhead-error);
   }
 
@@ -36,7 +36,31 @@
   }
 
   .zoom-btn {
-    @apply p-2 rounded-md bg-accent/10 hover:bg-accent/20 text-accent transition-colors duration-200;
+    @apply p-2 rounded-md bg-indigo-100/20 hover:bg-indigo-200/30 text-indigo-600 transition-colors duration-200;
+  }
+
+  .note-text {
+    @apply text-gray-600;
+  }
+
+  .note-action {
+    @apply text-indigo-600 font-medium;
+  }
+
+  .note-subject {
+    @apply text-emerald-600 font-medium;
+  }
+
+  .note-object {
+    @apply text-amber-600 font-medium;
+  }
+
+  .note-result {
+    @apply text-purple-600 font-medium;
+  }
+
+  .note-emoji {
+    @apply mr-2;
   }
 
   @keyframes flow {
