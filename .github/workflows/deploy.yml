@@ -35,5 +35,5 @@ jobs:
           mkdir -p docs
           cp -r build/* docs/
           git add docs
-          git commit -m "Deploy flow diagram to docs folder"
+          git diff --staged --quiet || git commit -m "Deploy flow diagram to docs folder"
           git push origin main 
