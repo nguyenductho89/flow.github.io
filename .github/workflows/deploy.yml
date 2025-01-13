@@ -27,13 +27,19 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: List build output
+        run: ls -la build
+
       - name: Deploy
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
+          git pull origin main
           rm -rf flow
           mkdir -p flow
           cp -r build/* flow/
+          ls -la flow/
           git add flow
+          git status
           git diff --staged --quiet || git commit -m "Deploy flow diagram"
           git push origin main 

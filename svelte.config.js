@@ -12,7 +12,11 @@ const config = {
 			strict: false
 		}),
 		paths: {
-			base: '/flow'
+			base: '/flow',
+			relative: false
+		},
+		prerender: {
+			handleHttpError: 'warn'
 		}
 	},
 	preprocess: vitePreprocess()
