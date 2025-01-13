@@ -12,7 +12,7 @@ const config = {
 			strict: true
 		}),
 		paths: {
-			base: '/docs'
+			base: '/flow'
 		}
 	},
 	preprocess: vitePreprocess()
